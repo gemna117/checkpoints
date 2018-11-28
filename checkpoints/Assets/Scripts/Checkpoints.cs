@@ -5,7 +5,9 @@ using UnityEngine;
 public class Checkpoints : MonoBehaviour
 {
     [SerializeField]
-    private float rotationSpeed = 100;
+    private float inactivatedRotationSpeed = 100, activatedRotationSpeed = 300;
+
+    private bool isActivated = false;
 
     private void Update()
     {
@@ -14,7 +16,16 @@ public class Checkpoints : MonoBehaviour
 
     private void UpdateRotation()
     {
+        float rotationSpeed = inactivatedRotationSpeed;
+        if (isActivated)
+            rotationSpeed = activatedRotationSpeed;
+
         transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+    }
+
+    public void SetIsActivated(bool value)
+    {
+        isActivated = value;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
