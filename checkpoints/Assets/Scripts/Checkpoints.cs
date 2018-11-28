@@ -9,6 +9,7 @@ public class Checkpoints : MonoBehaviour
         if(collision.gameObject.CompareTag("player"))
         {
             Debug.Log("player entered the checkpoint");
+            PlayerCharacter player = collision.GetComponent<PlayerCharacter>();
         }
         
     }
